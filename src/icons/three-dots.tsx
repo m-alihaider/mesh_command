@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const ThreeDotsIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
   className,
-  fill = "#5F0101",
-  stroke = "#5F0101",
+  fill = '#5F0101',
+  stroke = '#5F0101',
   ...props
 }) => (
   <svg

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const EditIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
   className,
-  fill = "white",
-  stroke = "white",
+  fill = 'white',
+  stroke = 'white',
   ...props
 }) => (
   <svg

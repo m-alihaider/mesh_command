@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState, Suspense } from "react";
+import AuthButton from '@/components/forms/button';
+import FormHeading from '@/components/forms/heading';
+import Logo from '@/components/shared/logo';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
-import Logo from "@/components/shared/logo";
-import AuthButton from "@/components/forms/button";
-import FormHeading from "@/components/forms/heading";
-import { Input } from "@/components/ui/input";
-
-import { cn } from "@/lib/utils";
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 export default function OtpVerificationPage() {
   return (
@@ -21,9 +20,7 @@ const OTP_LENGTH = 6;
 
 function OtpForm() {
   const [seconds, setSeconds] = useState(60);
-  const [inputValues, setInputValues] = useState<string[]>(
-    Array(OTP_LENGTH).fill(""),
-  );
+  const [inputValues, setInputValues] = useState<string[]>(Array(OTP_LENGTH).fill(''));
   const inputs = useRef<Array<HTMLInputElement | null>>([]);
 
   useEffect(() => {
@@ -38,7 +35,7 @@ function OtpForm() {
   }
 
   function onChange(idx: number, newValue: string) {
-    const char = newValue.replace(/\D/g, "").slice(-1); // should contain only one digit
+    const char = newValue.replace(/\D/g, '').slice(-1); // should contain only one digit
     setInputValues((prev) => {
       const copy = [...prev];
       copy[idx] = char;
@@ -48,26 +45,26 @@ function OtpForm() {
   }
 
   function onKeyDown(idx: number, e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Backspace" && !inputValues[idx] && idx > 0) {
+    if (e.key === 'Backspace' && !inputValues[idx] && idx > 0) {
       e.preventDefault();
       focusIndex(idx - 1);
       setInputValues((prev) => {
         const copy = [...prev];
-        copy[idx - 1] = "";
+        copy[idx - 1] = '';
         return copy;
       });
     }
-    if (e.key === "ArrowLeft" && idx > 0) focusIndex(idx - 1);
-    if (e.key === "ArrowRight" && idx < OTP_LENGTH - 1) focusIndex(idx + 1);
+    if (e.key === 'ArrowLeft' && idx > 0) focusIndex(idx - 1);
+    if (e.key === 'ArrowRight' && idx < OTP_LENGTH - 1) focusIndex(idx + 1);
   }
 
   function onPaste(idx: number, e: React.ClipboardEvent<HTMLInputElement>) {
     e.preventDefault();
 
-    const text = e.clipboardData.getData("text");
+    const text = e.clipboardData.getData('text');
     if (!text) return;
 
-    const digits = text.replace(/\D/g, "").slice(0, OTP_LENGTH);
+    const digits = text.replace(/\D/g, '').slice(0, OTP_LENGTH);
     if (!digits) return;
 
     const next = inputValues.slice();
@@ -87,10 +84,8 @@ function OtpForm() {
         <form className="flex flex-col px-6 sm:px-12 py-8 gap-6 rounded-2xl border border-[#F5F5F5] shadow-[0_4px_44px_0_rgba(0,0,0,0.11)] md:min-w-[600px] w-full bg-white">
           <FormHeading title="OTP verification">
             <p className="text-text-secondary text-sm">
-              A 6-digit code has been sent on your given email{" "}
-              <span className="font-medium text-foreground">
-                hello@boss.com
-              </span>
+              A 6-digit code has been sent on your given email{' '}
+              <span className="font-medium text-foreground">hello@boss.com</span>
               .
               <br className="hidden sm:block" /> Enter verification code below.
             </p>
@@ -113,18 +108,15 @@ function OtpForm() {
                 onPaste={(e) => onPaste(i, e)}
                 aria-label={`Digit ${i + 1}`}
                 className={cn(
-                  "h-10 sm:h-14 w-9 sm:w-12 text-center text-lg tracking-widest font-medium rounded-md ",
-                  val
-                    ? "border-[#B3E2A7]"
-                    : "focus:border focus:border-text-primary",
+                  'h-10 sm:h-14 w-9 sm:w-12 text-center text-lg tracking-widest font-medium rounded-md ',
+                  val ? 'border-[#B3E2A7]' : 'focus:border focus:border-text-primary',
                 )}
               />
             ))}
           </div>
 
           <p className="text-center text-sm text-text-secondary">
-            Code will resend in{" "}
-            <span className="font-semibold text-foreground">{seconds}s</span>
+            Code will resend in <span className="font-semibold text-foreground">{seconds}s</span>
           </p>
           <div className="flex justify-center">
             <AuthButton name="Verify" />

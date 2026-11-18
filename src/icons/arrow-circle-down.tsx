@@ -1,8 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-const ArrowCircleDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = (
-  props,
-) => (
+const ArrowCircleDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     width={props.width || 24}
     height={props.height || 24}

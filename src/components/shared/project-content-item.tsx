@@ -16,6 +16,7 @@ interface ProjectContentItemProps {
   projects: Project[];
   showCreateButton?: boolean;
   isChatTab?: boolean;
+  isSearchActive?: boolean;
 }
 
 function ProjectContentItem({
@@ -23,6 +24,7 @@ function ProjectContentItem({
   projects,
   showCreateButton = false,
   isChatTab = false,
+  isSearchActive = false,
 }: ProjectContentItemProps) {
   const {
     project: { selectedProjectId },
@@ -43,8 +45,12 @@ function ProjectContentItem({
   const [isCategoryOpen, setIsCategoryOpen] = useState(hasSelectedProject);
 
   useEffect(() => {
-    setIsCategoryOpen(hasSelectedProject);
-  }, [hasSelectedProject]);
+    if (isSearchActive) {
+      setIsCategoryOpen(true);
+    } else {
+      setIsCategoryOpen(hasSelectedProject);
+    }
+  }, [hasSelectedProject, isSearchActive]);
 
   const getStatusDisplay = (status: string) => {
     const normalized = status.toLowerCase();

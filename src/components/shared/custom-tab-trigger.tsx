@@ -1,4 +1,4 @@
-import { TabsTrigger } from "../ui/tabs";
+import { TabsTrigger } from '../ui/tabs';
 
 interface CustomTabTriggerProps {
   value: string;

@@ -1,15 +1,9 @@
-import React from "react";
-import type { SVGProps } from "react";
+import React from 'react';
+import type { SVGProps } from 'react';
 
 export function GoogleIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={288}
-      height={288}
-      viewBox="0 0 16 16"
-      {...props}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width={288} height={288} viewBox="0 0 16 16" {...props}>
       <g fill="none" fillRule="evenodd" clipRule="evenodd">
         <path
           fill="#f44336"

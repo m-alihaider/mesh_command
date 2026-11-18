@@ -4,6 +4,8 @@ import { Tabs, TabsContent, TabsList } from '@/components/ui/tabs';
 import { useAppStore } from '@/store';
 import type { Project, ProjectCategory } from '@/store';
 
+import React, { useState } from 'react';
+
 import { CustomTabTrigger } from '../shared/chat-tab-trigger';
 import ProjectContentItem from '../shared/project-content-item';
 import TabActions from '../shared/tab-actions';
@@ -27,6 +29,7 @@ export default function ProjectSelectorTab({
   const {
     project: { categories },
   } = useAppStore();
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <Tabs defaultValue="active" className={className}>
@@ -38,7 +41,12 @@ export default function ProjectSelectorTab({
         ))}
       </TabsList>
 
-      <TabActions showCreateButton={showCreateButton} type="project" />
+      <TabActions
+        showCreateButton={showCreateButton}
+        type="project"
+        searchValue={searchQuery}
+        onSearchChange={(e) => setSearchQuery(e.target.value)}
+      />
 
       {tabsConfig.map((tab) => (
         <TabsContent
@@ -50,6 +58,7 @@ export default function ProjectSelectorTab({
             categories={categories}
             status={tab.status}
             showCreateButton={showCreateButton}
+            searchQuery={searchQuery}
           />
         </TabsContent>
       ))}
@@ -61,14 +70,24 @@ interface ProjectCategoriesListProps {
   categories: ProjectCategory[];
   status: 'active' | 'on-hold' | 'completed';
   showCreateButton?: boolean;
+  searchQuery?: string;
 }
 
 function ProjectCategoriesList({
   categories,
   status,
   showCreateButton,
+  searchQuery = '',
 }: ProjectCategoriesListProps) {
-  const filteredCategories = getFilteredCategories(categories, status);
+  const filteredCategories = getFilteredCategories(categories, status, searchQuery);
+
+  if (filteredCategories.length === 0) {
+    return (
+      <div className="py-4 px-2 text-center">
+        <p className="text-sm text-text-secondary">No projects found.</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -76,8 +95,9 @@ function ProjectCategoriesList({
         <ProjectContentItem
           key={category.id}
           title={category.name}
-          projects={getFilteredProjects(category.projects, status)}
+          projects={getFilteredProjects(category.projects, status, searchQuery)}
           showCreateButton={showCreateButton}
+          isSearchActive={searchQuery.trim().length > 0}
         />
       ))}
     </>
@@ -87,12 +107,27 @@ function ProjectCategoriesList({
 function getFilteredCategories(
   categories: ProjectCategory[],
   status: 'active' | 'on-hold' | 'completed',
+  searchQuery: string = '',
 ) {
+  const query = searchQuery.trim().toLowerCase();
   return categories.filter((category) =>
-    category.projects.some((project) => project.status.toLowerCase() === status),
+    category.projects.some((project) => {
+      const matchesStatus = project.status.toLowerCase() === status;
+      const matchesTitle = query ? project.title.toLowerCase().includes(query) : true;
+      return matchesStatus && matchesTitle;
+    }),
   );
 }
 
-function getFilteredProjects(projects: Project[], status: 'active' | 'on-hold' | 'completed') {
-  return projects.filter((project) => project.status.toLowerCase() === status);
+function getFilteredProjects(
+  projects: Project[],
+  status: 'active' | 'on-hold' | 'completed',
+  searchQuery: string = '',
+) {
+  const query = searchQuery.trim().toLowerCase();
+  return projects.filter((project) => {
+    const matchesStatus = project.status.toLowerCase() === status;
+    const matchesTitle = query ? project.title.toLowerCase().includes(query) : true;
+    return matchesStatus && matchesTitle;
+  });
 }

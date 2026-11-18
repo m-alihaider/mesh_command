@@ -46,7 +46,7 @@ function TaskCardContent({ task }: TaskCardProps) {
     <section className="flex flex-col items-start gap-1.5">
       <h4 className="text-text-primary font-semibold text-base">{task.title}</h4>
       <p className="text-xs text-text-secondary line-clamp-2">
-        {task.description} lrem ipsum dolor sit
+        {task.description || 'Review current access-control policies and vendor audit logs.'}
       </p>
       <TaskCardDetails task={task} />
       <TaskCardFooter task={task} />

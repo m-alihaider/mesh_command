@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const ChatIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
   className,
-  fill = "#78829D",
-  stroke = "#78829D",
+  fill = '#78829D',
+  stroke = '#78829D',
   ...props
 }) => (
   <svg

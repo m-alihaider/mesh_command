@@ -1,5 +1,6 @@
-import LogoIcon from "@/icons/logo";
-import React from "react";
+import LogoIcon from '@/icons/logo';
+
+import React from 'react';
 
 interface LogoProps {
   isNavBar?: boolean;
@@ -16,9 +17,7 @@ function Logo({ isNavBar }: LogoProps) {
 
 export function LogoText({ isNavBar }: LogoProps) {
   return (
-    <hgroup
-      className={`${isNavBar ? "hidden sm:flex" : "flex"} flex-col items-start`}
-    >
+    <hgroup className={`${isNavBar ? 'hidden sm:flex' : 'flex'} flex-col items-start`}>
       <h3 className="text-2xl md:text-3xl 2xl:text-4xl text-primary font-extrabold leading-6 sm:leading-7">
         Mesh Command
       </h3>

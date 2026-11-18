@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -22,12 +22,7 @@ function LogoIcon(props: React.SVGProps<SVGSVGElement>) {
       </g>
       <defs>
         <clipPath id="clip0_12_2740">
-          <rect
-            width="64"
-            height="64"
-            fill="white"
-            transform="translate(0 0.5)"
-          />
+          <rect width="64" height="64" fill="white" transform="translate(0 0.5)" />
         </clipPath>
       </defs>
     </svg>

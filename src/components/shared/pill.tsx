@@ -1,20 +1,14 @@
-function Pill({
-  title,
-  className = "",
-}: {
-  title: string;
-  className?: string;
-}) {
+function Pill({ title, className = '' }: { title: string; className?: string }) {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
-      case "completed":
-        return "bg-green-100 text-green-700";
-      case "in-progress":
-        return "bg-blue-100 text-blue-700";
-      case "to-do":
-        return "bg-orange-100 text-orange-700";
+      case 'completed':
+        return 'bg-green-100 text-green-700';
+      case 'in-progress':
+        return 'bg-blue-100 text-blue-700';
+      case 'to-do':
+        return 'bg-orange-100 text-orange-700';
       default:
-        return "bg-primary-light text-primary";
+        return 'bg-primary-light text-primary';
     }
   };
 

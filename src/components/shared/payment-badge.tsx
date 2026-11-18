@@ -1,23 +1,23 @@
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 interface PaymentBadgeProps {
-  status: "Active" | "Paid";
-  size?: "sm" | "md" | "lg";
+  status: 'Active' | 'Paid';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const paymentStatusConfig = {
   Active: {
-    variant: "default" as const,
-    color: "bg-[#ECFDF3]",
-    textColor: "text-[#067647]",
-    borderColor: "border-[#ABEFC6]",
+    variant: 'default' as const,
+    color: 'bg-[#ECFDF3]',
+    textColor: 'text-[#067647]',
+    borderColor: 'border-[#ABEFC6]',
   },
   Paid: {
-    variant: "default" as const,
-    color: "bg-[#ECFDF3]",
-    textColor: "text-[#067647]",
-    borderColor: "border-[#ABEFC6]",
+    variant: 'default' as const,
+    color: 'bg-[#ECFDF3]',
+    textColor: 'text-[#067647]',
+    borderColor: 'border-[#ABEFC6]',
   },
 };
 
@@ -41,13 +41,13 @@ const CheckIcon = () => (
   </svg>
 );
 
-export function PaymentBadge({ status, size = "md" }: PaymentBadgeProps) {
+export function PaymentBadge({ status, size = 'md' }: PaymentBadgeProps) {
   const config = paymentStatusConfig[status];
 
   const sizeClasses = {
-    sm: "text-xs px-2 py-0.5",
-    md: "text-sm px-2.5 py-0.5",
-    lg: "text-sm px-3 py-1",
+    sm: 'text-xs px-2 py-0.5',
+    md: 'text-sm px-2.5 py-0.5',
+    lg: 'text-sm px-3 py-1',
   };
 
   return (
@@ -58,7 +58,7 @@ export function PaymentBadge({ status, size = "md" }: PaymentBadgeProps) {
         config.textColor,
         config.color,
         config.borderColor,
-        "inline-flex items-center gap-1.5 font-medium border",
+        'inline-flex items-center gap-1.5 font-medium border',
       )}
     >
       <CheckIcon />

@@ -945,7 +945,7 @@ export const sampleCategories: ProjectCategory[] = [
           {
             id: 8,
             title: 'Assess current security vulnerabilities',
-            description: 'Conduct comprehensive security audit of existing systems',
+            description: 'Review current access-control policies and vendor audit logs.',
             assignedTo: 'Security Team',
             deadline: 'December 10, 2025',
             linkedDocs: ['security-audit.pdf'],

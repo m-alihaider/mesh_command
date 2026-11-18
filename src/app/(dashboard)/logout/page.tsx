@@ -1,7 +1,5 @@
-import React from "react";
+import { redirect } from 'next/navigation';
 
-function LogoutPage() {
-  return <div>Implement the logout functionality</div>;
+export default function LogoutPage() {
+  redirect('/');
 }
-
-export default LogoutPage;

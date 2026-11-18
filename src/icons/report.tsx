@@ -1,5 +1,5 @@
-import React from "react";
-import type { SVGProps } from "react";
+import React from 'react';
+import type { SVGProps } from 'react';
 
 export function ReportIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -11,12 +11,7 @@ export function ReportIcon(props: SVGProps<SVGSVGElement>) {
       {...props}
       stroke="#fff"
     >
-      <g
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-      >
+      <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
         <path d="m10 7l4-4l4 4"></path>
         <path d="M14 3v4.394A6.74 6.74 0 0 1 11 13a6.74 6.74 0 0 0-3 5.606V21"></path>
       </g>

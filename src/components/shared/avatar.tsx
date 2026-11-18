@@ -1,39 +1,33 @@
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { cn } from '@/lib/utils';
+
+import Image from 'next/image';
 
 interface AvatarProps {
   src?: string;
   alt?: string;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   fallback?: string;
   className?: string;
 }
 
 const sizeMap = {
-  sm: { class: "w-6 h-6", size: 24 },
-  md: { class: "w-8 h-8", size: 32 },
-  lg: { class: "w-10 h-10", size: 40 },
+  sm: { class: 'w-6 h-6', size: 24 },
+  md: { class: 'w-8 h-8', size: 32 },
+  lg: { class: 'w-10 h-10', size: 40 },
 };
 
-export function Avatar({
-  src,
-  alt,
-  size = "md",
-  fallback,
-  className,
-}: AvatarProps) {
+export function Avatar({ src, alt, size = 'md', fallback, className }: AvatarProps) {
   const { class: sizeClasses, size: imageSize } = sizeMap[size];
-  const textSize =
-    size === "sm" ? "text-xs" : size === "lg" ? "text-base" : "text-sm";
+  const textSize = size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm';
 
   if (src) {
     return (
       <Image
         src={src}
-        alt={alt || "Avatar"}
+        alt={alt || 'Avatar'}
         width={imageSize}
         height={imageSize}
-        className={cn("rounded-full object-cover", sizeClasses, className)}
+        className={cn('rounded-full object-cover', sizeClasses, className)}
       />
     );
   }
@@ -41,13 +35,13 @@ export function Avatar({
   return (
     <div
       className={cn(
-        "bg-gray-300 rounded-full flex items-center justify-center font-medium text-gray-700",
+        'bg-gray-300 rounded-full flex items-center justify-center font-medium text-gray-700',
         sizeClasses,
         textSize,
         className,
       )}
     >
-      {fallback || "?"}
+      {fallback || '?'}
     </div>
   );
 }
@@ -58,7 +52,7 @@ interface AvatarGroupProps {
     alt?: string;
     fallback?: string;
   }>;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   showAddButton?: boolean;
   onAdd?: () => void;
   maxVisible?: number;
@@ -66,7 +60,7 @@ interface AvatarGroupProps {
 
 export function AvatarGroup({
   avatars,
-  size = "md",
+  size = 'md',
   showAddButton = false,
   onAdd,
   maxVisible = 5,
@@ -83,12 +77,7 @@ export function AvatarGroup({
       ))}
 
       {remainingCount > 0 && (
-        <div
-          className={cn(
-            "border-2 border-white rounded-full",
-            sizeMap[size].class,
-          )}
-        >
+        <div className={cn('border-2 border-white rounded-full', sizeMap[size].class)}>
           <div className="bg-gray-400 rounded-full w-full h-full flex items-center justify-center text-white text-xs">
             +{remainingCount}
           </div>
@@ -99,7 +88,7 @@ export function AvatarGroup({
         <button
           onClick={onAdd}
           className={cn(
-            "bg-red-600 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-red-700 transition-colors",
+            'bg-red-600 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-red-700 transition-colors',
             sizeMap[size].class,
           )}
         >

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 const LockIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg

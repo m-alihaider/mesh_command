@@ -1,55 +1,48 @@
-"use client";
+'use client';
 
-import { Pie, PieChart, Cell, LabelList } from "recharts";
+import { ChartConfig, ChartContainer, ChartTooltip } from '@/components/ui/chart';
 
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-} from "@/components/ui/chart";
+import { Cell, LabelList, Pie, PieChart } from 'recharts';
 
-export const description = "A donut chart";
+export const description = 'A donut chart';
 
 const chartPieDonutData = [
-  { color: "#CB4A4A", label: "Finance", value: 275 },
-  { color: "#5F0101", label: "Facilities", value: 200 },
-  { color: "#F25555", label: "Human Resources", value: 187 },
-  { color: "#FFA4A4", label: "Labour", value: 173 },
-  { color: "#F0F1F2", label: "Other", value: 90 },
+  { color: '#CB4A4A', label: 'Finance', value: 275 },
+  { color: '#5F0101', label: 'Facilities', value: 200 },
+  { color: '#F25555', label: 'Human Resources', value: 187 },
+  { color: '#FFA4A4', label: 'Labour', value: 173 },
+  { color: '#F0F1F2', label: 'Other', value: 90 },
 ];
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: 'Visitors',
   },
   chrome: {
-    label: "Chrome",
-    color: "var(--chart-1)",
+    label: 'Chrome',
+    color: 'var(--chart-1)',
   },
   safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
+    label: 'Safari',
+    color: 'var(--chart-2)',
   },
   firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
+    label: 'Firefox',
+    color: 'var(--chart-3)',
   },
   edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
+    label: 'Edge',
+    color: 'var(--chart-4)',
   },
   other: {
-    label: "Other",
-    color: "var(--chart-5)",
+    label: 'Other',
+    color: 'var(--chart-5)',
   },
 } satisfies ChartConfig;
 
 export function ChartPieDonut() {
   return (
-    <ChartContainer
-      config={chartConfig}
-      className="mx-auto aspect-square max-h-[250px]"
-    >
+    <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
       <PieChart>
         <ChartTooltip
           cursor={false}
@@ -65,12 +58,7 @@ export function ChartPieDonut() {
             return null;
           }}
         />
-        <Pie
-          data={chartPieDonutData}
-          dataKey="value"
-          nameKey="label"
-          innerRadius={60}
-        >
+        <Pie data={chartPieDonutData} dataKey="value" nameKey="label" innerRadius={60}>
           {chartPieDonutData.map((entry, idx) => (
             <Cell key={idx} fill={entry.color} />
           ))}

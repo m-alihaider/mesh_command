@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 const Send2Icon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg

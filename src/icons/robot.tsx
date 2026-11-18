@@ -1,8 +1,8 @@
-import React from "react";
-import type { SVGProps } from "react";
+import React from 'react';
+import type { SVGProps } from 'react';
 
 export function RobotIcon({
-  fill = "black",
+  fill = 'black',
   ...props
 }: SVGProps<SVGSVGElement> & { fill?: string }) {
   return (

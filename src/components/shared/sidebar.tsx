@@ -1,7 +1,8 @@
-import { Search, MoreHorizontal } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/components/shared/status-badge";
+import { StatusBadge } from '@/components/shared/status-badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+import { MoreHorizontal, Search } from 'lucide-react';
 
 interface SidebarItem {
   id: number;
@@ -38,9 +39,9 @@ export function Sidebar({
   tabs = [],
   onTabChange,
   showNewButton = false,
-  newButtonText = "New Item",
+  newButtonText = 'New Item',
   onNewItem,
-  searchPlaceholder = "Search",
+  searchPlaceholder = 'Search',
   showSearch = true,
 }: SidebarProps) {
   return (
@@ -63,8 +64,8 @@ export function Sidebar({
                 onClick={() => onTabChange?.(tab)}
                 className={`px-3 py-1 ${
                   activeTab === tab
-                    ? "text-red-600 border-b-2 border-red-600"
-                    : "text-gray-500 hover:text-gray-700"
+                    ? 'text-red-600 border-b-2 border-red-600'
+                    : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 {tab}
@@ -78,20 +79,13 @@ export function Sidebar({
           {showSearch && (
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 size-4" />
-              <Input
-                type="text"
-                placeholder={searchPlaceholder}
-                className="pl-10"
-              />
+              <Input type="text" placeholder={searchPlaceholder} className="pl-10" />
             </div>
           )}
 
           {/* New Button */}
           {showNewButton && (
-            <Button
-              onClick={onNewItem}
-              className="w-full bg-red-700 hover:bg-red-800"
-            >
+            <Button onClick={onNewItem} className="w-full bg-red-700 hover:bg-red-800">
               {newButtonText}
             </Button>
           )}
@@ -105,34 +99,25 @@ export function Sidebar({
             key={item.id}
             onClick={() => onSelectItem(item.id)}
             className={`w-full p-4 text-left border-b border-gray-100 hover:bg-white transition-colors ${
-              selectedId === item.id
-                ? "bg-white border-l-4 border-l-red-600"
-                : ""
+              selectedId === item.id ? 'bg-white border-l-4 border-l-red-600' : ''
             }`}
           >
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 bg-red-500 rounded-full" />
-              <span className="font-medium text-gray-900 text-sm">
-                {item.name}
-              </span>
+              <span className="font-medium text-gray-900 text-sm">{item.name}</span>
               {item.status && <StatusBadge status={item.status} size="sm" />}
             </div>
 
             {item.subItems && item.subItems.length > 0 && (
               <div className="text-xs text-gray-500 space-y-1">
                 {item.subItems.map((subItem) => (
-                  <div
-                    key={subItem.id}
-                    className="flex items-center justify-between"
-                  >
+                  <div key={subItem.id} className="flex items-center justify-between">
                     <span>
                       {subItem.name.length > 30
-                        ? subItem.name.substring(0, 30) + "..."
+                        ? subItem.name.substring(0, 30) + '...'
                         : subItem.name}
                     </span>
-                    {subItem.status && (
-                      <StatusBadge status={subItem.status} size="sm" />
-                    )}
+                    {subItem.status && <StatusBadge status={subItem.status} size="sm" />}
                   </div>
                 ))}
               </div>

@@ -1,12 +1,22 @@
 import SearchIcon from '@/icons/search-normal';
+import { cn } from '@/lib/utils';
+
+import React from 'react';
 
 import { Input } from '../ui/input';
 
-interface SearchInputProps {
+interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   isChatTab?: boolean;
 }
 
-export function SearchInput({ isChatTab }: SearchInputProps) {
+export function SearchInput({
+  isChatTab,
+  value,
+  onChange,
+  placeholder = 'Search',
+  className,
+  ...props
+}: SearchInputProps) {
   return (
     <label
       className={`w-full px-3 py-1 items-center gap-2 rounded-xs bg-Bg-Dark shadow-xs ${
@@ -19,8 +29,14 @@ export function SearchInput({ isChatTab }: SearchInputProps) {
         id={'search'}
         name={'search'}
         type={'text'}
-        placeholder={'Search'}
-        className="shadow-none border-none outline-none ring-0 p-0 text-sm placeholder:text-sm bg-transparent "
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={cn(
+          'shadow-none border-none outline-none ring-0 p-0 text-sm placeholder:text-sm bg-transparent',
+          className,
+        )}
+        {...props}
       />
     </label>
   );

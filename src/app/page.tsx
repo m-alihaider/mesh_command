@@ -1,22 +1,23 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
+import AuthButton from '@/components/forms/button';
+import FormHeading from '@/components/forms/heading';
+import AuthInput from '@/components/forms/input';
+import Logo from '@/components/shared/logo';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { AppleIcon } from '@/icons/apple';
+import EyeSlashIcon from '@/icons/eye-slash';
+import { GoogleIcon } from '@/icons/google';
+import { MicrosoftIcon } from '@/icons/microsoft';
 
-import { Eye } from "lucide-react";
-import { GoogleIcon } from "@/icons/google";
-import { AppleIcon } from "@/icons/apple";
-import { MicrosoftIcon } from "@/icons/microsoft";
+import { useState } from 'react';
 
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import AuthInput from "@/components/forms/input";
-import Logo from "@/components/shared/logo";
-import AuthButton from "@/components/forms/button";
-import FormHeading from "@/components/forms/heading";
-import EyeSlashIcon from "@/icons/eye-slash";
+import Link from 'next/link';
 
-const providers = ["google", "apple", "microsoft"] as const;
+import { Eye } from 'lucide-react';
+
+const providers = ['google', 'apple', 'microsoft'] as const;
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +36,7 @@ export default function LoginPage() {
 
           <div className="flex flex-col gap-2 ">
             <AuthInput
-              icon={"email"}
+              icon={'email'}
               label="Email"
               name="email"
               id="email"
@@ -51,7 +52,7 @@ export default function LoginPage() {
               label="Password"
               name="password"
               id="password"
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               autoComplete="current-password"
               placeHolder="Enter your password"
               minLength={8}
@@ -59,7 +60,7 @@ export default function LoginPage() {
               endAdornment={
                 <button
                   type="button"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setShowPassword((s) => !s)}
                 >
@@ -72,10 +73,7 @@ export default function LoginPage() {
               }
             />
 
-            <Link
-              href="/otp-verification"
-              className="text-text-primary font-medium text-right"
-            >
+            <Link href="/otp-verification" className="text-text-primary font-medium text-right">
               Forgot your password?
             </Link>
           </div>
@@ -99,17 +97,17 @@ export default function LoginPage() {
   );
 }
 
-type Provider = "google" | "apple" | "microsoft";
+type Provider = 'google' | 'apple' | 'microsoft';
 
 function OAuthButton({ provider }: { provider: Provider }) {
   const label =
-    provider === "google"
-      ? "Continue with Google"
-      : provider === "apple"
-        ? "Continue with Apple"
-        : "Continue with Microsoft";
+    provider === 'google'
+      ? 'Continue with Google'
+      : provider === 'apple'
+        ? 'Continue with Apple'
+        : 'Continue with Microsoft';
 
-  if (provider === "apple") {
+  if (provider === 'apple') {
     return (
       <Button
         type="button"
@@ -126,11 +124,7 @@ function OAuthButton({ provider }: { provider: Provider }) {
       type="button"
       className="w-full py-6 text-base gap-4 font-medium rounded-[10px] justify-center items-center shadow-md bg-white hover:bg-white/80"
     >
-      {provider === "google" ? (
-        <GoogleIcon className="size-6" aria-hidden />
-      ) : (
-        <MicrosoftIcon />
-      )}
+      {provider === 'google' ? <GoogleIcon className="size-6" aria-hidden /> : <MicrosoftIcon />}
       {label}
     </Button>
   );

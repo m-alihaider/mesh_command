@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const CrossCircleIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
   className,
-  fill = "#717D9D",
-  stroke = "#717D9D",
+  fill = '#717D9D',
+  stroke = '#717D9D',
   ...props
 }) => (
   <svg

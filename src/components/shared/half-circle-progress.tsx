@@ -1,32 +1,32 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface HalfCircleProgressProps {
   value: number; // 0-100
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   label?: string;
   className?: string;
   strokeColor?: string;
 }
 
 const sizeMap = {
-  sm: { width: "w-12", height: "h-6", strokeWidth: 2, fontSize: "text-xs" },
-  md: { width: "w-16", height: "h-8", strokeWidth: 2, fontSize: "text-sm" },
-  lg: { width: "w-20", height: "h-10", strokeWidth: 3, fontSize: "text-base" },
+  sm: { width: 'w-12', height: 'h-6', strokeWidth: 2, fontSize: 'text-xs' },
+  md: { width: 'w-16', height: 'h-8', strokeWidth: 2, fontSize: 'text-sm' },
+  lg: { width: 'w-20', height: 'h-10', strokeWidth: 3, fontSize: 'text-base' },
 };
 
 export function HalfCircleProgress({
   value,
-  size = "md",
+  size = 'md',
   label,
   className,
-  strokeColor = "#5f0101",
+  strokeColor = '#5f0101',
 }: HalfCircleProgressProps) {
   const { width, height, strokeWidth, fontSize } = sizeMap[size];
   const strokeDasharray = `${(value / 100) * 50}, 50`; // Half circle is 50 units
 
   return (
-    <div className={cn("flex flex-col items-center gap-1", className)}>
-      <div className={cn("relative", width, height)}>
+    <div className={cn('flex flex-col items-center gap-1', className)}>
+      <div className={cn('relative', width, height)}>
         <svg className={cn(width, height)} viewBox="0 0 36 18">
           {/* Background half circle */}
           <path
@@ -47,16 +47,10 @@ export function HalfCircleProgress({
           />
         </svg>
         <div className="absolute inset-0 flex items-end justify-center pb-1">
-          <span className={cn("font-semibold text-gray-900", fontSize)}>
-            {value}%
-          </span>
+          <span className={cn('font-semibold text-gray-900', fontSize)}>{value}%</span>
         </div>
       </div>
-      {label && (
-        <div className="text-xs font-medium text-text-primary text-center">
-          {label}
-        </div>
-      )}
+      {label && <div className="text-xs font-medium text-text-primary text-center">{label}</div>}
     </div>
   );
 }
